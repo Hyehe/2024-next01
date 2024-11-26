@@ -4,7 +4,7 @@ import ReadTwo from '@/app/page/ReadTwo';
 import React from 'react';
 
 // 동적 쿼리는
-async function page({params}) {
+async function Page({params}) {
   const param = await params;
   const msg = param.id;
   console.log("msg : " + msg);
@@ -27,4 +27,4 @@ async function page({params}) {
   );
 }
 
-export default page;
+export default Page;
