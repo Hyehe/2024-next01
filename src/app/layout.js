@@ -23,7 +23,6 @@ export default function RootLayout({ children }) {
           <li><Link href="/read/3">JS</Link></li>
           <li><Link href="/gallery">image</Link></li>
           <li><Link href="/itemList">ItemList(외부서버)</Link></li>
-          <li><Link href="/gallery">Guestbook(Spring 서버)</Link></li>
           <li><Link href="/guestBookList">Guestbook(Spring 서버)</Link></li>
         </ol>
         <hr/>
