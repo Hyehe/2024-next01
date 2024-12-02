@@ -24,6 +24,8 @@ export default function RootLayout({ children }) {
           <li><Link href="/gallery">image</Link></li>
           <li><Link href="/itemList">ItemList(외부서버)</Link></li>
           <li><Link href="/guestBookList">Guestbook(Spring 서버)</Link></li>
+          <li><Link href="/login">login(Spring 서버)</Link></li>
+          <li><Link href="/join">join(Spring 서버)</Link></li>
         </ol>
         <hr/>
         {children}

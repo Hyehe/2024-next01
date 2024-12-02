@@ -5,12 +5,18 @@ import { Button } from "@mui/material";
 import axios from "axios";
 
 function Page({ params }) {
+  // params 은 Next.js의 Dynamic Route에서 제공하는 객체로, 
+  // URL 경로에서 추출한 동적 세그먼트를 전달
+  // \[id] 파일 구조 _ params객체는 {id:'1'} 같은 형태로 전달
+  // 동적 라우팅 파일에서만 사용하며 api호출이나 서버 데이터 핸들링이 필요할 때 활용
   const MAKEUP_API_BASE_URL = process.env.NEXT_PUBLIC_MAKEUP_API_BASE_URL;
+
   const [item, setItem] = useState(null); // 데이터 상태
   const [loading, setLoading] = useState(true); // 로딩 상태
   const [error, setError] = useState(null); // 에러 상태
 
   useEffect(() => {
+    // 데이터 가져오기 위한 비동기 함수 정의
     const fetchData = async () => {
       try {
         setLoading(true); // 로딩 시작
@@ -23,6 +29,7 @@ function Page({ params }) {
         // const resolvedParams = await Promise.resolve(params); // params 언래핑
         // const { id } = resolvedParams; // id 추출
         const { id } = await Promise.resolve(params);
+        // `params`에서 `id`를 추출. Promise.resolve()는 안전한 비동기 처리를 위해 사용
         const API_URL = `${MAKEUP_API_BASE_URL}/v1/products/${id}.json`;
 
         // 데이터 가져오기
