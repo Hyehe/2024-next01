@@ -1,29 +1,23 @@
 import Image from 'next/image';
-import React from 'react';
 import './gallery.css'
 
-function page(props) {
-  return (
-    <div>
+function Page(props) {
+    return (
         <table>
-          <thead>
-          <tr>
-            <td><Image src="/images/bg.jpg" alt='' width={50} height={50} /><br/>야경</td>
-            <td><Image src="/images/bg-dark.jpg" alt='' width={50} height={50} /><br/>별별</td>
-            <td><Image src="/images/car1.jpg" alt='' width={50} height={50} /><br/>보차</td>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td><Image src="/images/car2.jpg" alt='' width={50} height={50} /><br/>민차</td>
-            <td><Image src="/images/tree-1.jpg" alt='' width={50} height={50} /><br/>나무</td>
-            <td><Image src="/images/tree-2.jpg" alt='' width={50} height={50} /><br/>나무</td>
-          </tr>
-          </tbody>
+            <tbody>
+                <tr>
+                    <td><Image src="/images/tree-1.jpg" alt="" width={50} height={50}></Image></td>
+                    <td><Image src="/images/tree-2.jpg" alt="" width={50} height={50}></Image></td>
+                    <td><Image src="/images/tree-3.jpg" alt="" width={50} height={50}></Image></td>
+                </tr>
+                <tr>
+                    <td><Image src="/images/tree-4.jpg" alt="" width={50} height={50}></Image></td>
+                    <td><Image src="/images/coffee-blue.jpg" alt="" width={50} height={50}></Image></td>
+                    <td><Image src="/images/tree-1.jpg" alt="" width={50} height={50}></Image></td>
+                </tr>
+            </tbody>
         </table>
-      <hr/>
-    </div>
-  );
+    );
 }
 
-export default page;
+export default Page;
