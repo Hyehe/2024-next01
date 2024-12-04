@@ -16,6 +16,7 @@ function Page(props) {
     gb_subject: '',
     gb_content: '',
     gb_email: '',
+    gb_pw: '',
     file: null,
   })
   const handleChange = (e) => {
@@ -38,6 +39,7 @@ function Page(props) {
     data.append("gb_subject", formData.gb_subject);
     data.append("gb_content", formData.gb_content);
     data.append("gb_email", formData.gb_email);
+    data.append("gb_pw", formData.gb_pw);
     if (formData.file) {
       data.append("file", formData.file);
     }
@@ -64,6 +66,7 @@ function Page(props) {
     formData.gb_name.trim() !== "" &&
     formData.gb_subject.trim() !== "" &&
     formData.gb_content.trim() !== "" &&
+    formData.gb_pw.trim() !== "" &&
     formData.gb_email.trim() !== "";
 
   return (
@@ -81,6 +84,13 @@ function Page(props) {
         label="제목"
         name='gb_subject'
         value={formData.gb_subject}
+        onChange={handleChange}
+        fullWidth
+        margin='normal' />
+      <TextField
+        label="비밀번호"
+        name='gb_pw'
+        value={formData.gb_pw}
         onChange={handleChange}
         fullWidth
         margin='normal' />

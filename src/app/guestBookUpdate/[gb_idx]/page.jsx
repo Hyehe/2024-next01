@@ -85,7 +85,7 @@ function Page({ params }) {
                 alert(response.data.message)
             }
         } catch (error) {
-            alert(response.data.message)
+           // alert(response.data.message)
         }
     }
     // 로딩 중

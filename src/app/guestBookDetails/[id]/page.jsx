@@ -118,6 +118,13 @@ function Page({ params }) {
                             <TableCell className="table-cell">DATE</TableCell>
                             <TableCell className="table-cell">{item.gb_regdate.substring(0, 10)}</TableCell>
                         </TableRow>
+                        {item.gb_filename && (
+                            <TableRow>
+                                <TableCell className='table-cell'>Image</TableCell>
+                                <TableCell className='table-cell'><img src={item.gb_filename} 
+                                    style={{width:"150px"}}/></TableCell>
+                            </TableRow>
+                        )}
                     </TableBody>
                 </Table>
             </TableContainer>
