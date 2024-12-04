@@ -1,10 +1,11 @@
 "use client"
 
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import axios from 'axios';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import './guestBookList.css';
+import useAuthStore from '../../../store/authStore';
 
 function Page(props) {
     const LOCAL_API_BASE_URL = process.env.NEXT_PUBLIC_LOCAL_API_BASE_URL
@@ -13,6 +14,7 @@ function Page(props) {
     const [error, setError] = useState(null); // 에러 상태
     // const API_URL = "http://localhost:8080/api/guestbook/list";
     const API_URL = `${LOCAL_API_BASE_URL}/guestbook/list`;
+    const {isAuthenticated} = useAuthStore();
 
     // 데이터 가져오기
     const getData = async () => {
@@ -20,8 +22,8 @@ function Page(props) {
             setLoading(true); // 로딩 상태 시작
             const response = await axios.get(API_URL); // axios를 사용한 API 호출
             const data = response.data.data;
+            // console.log(res.data)
             setList(data);
-            // setList([]); // 없을때 연습
         } catch (err) {
             console.error("Error fetching data:", err);
             setError(err.message);
@@ -47,6 +49,14 @@ function Page(props) {
     return (
         <>
             <h2 className="title">GuestBookList</h2>
+            {/* 로그인 된 상태이면 글쓰기 버튼 활성화 */}
+            {isAuthenticated && (
+                <div style={{textAlign:"right", marginRight:"250px"}}>
+                    <Button variant='contained' color='primary'>
+                        <Link href="/guestBookWrite" style={{color:"white", textDecoration:"none"}}>쓰기</Link>
+                    </Button>
+                </div>
+            )}
             <TableContainer component={Paper} className="table-container">
                 <Table className="custom-table">
                     <TableHead>
@@ -56,20 +66,21 @@ function Page(props) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {list.length === 0 ?
-                            <TableRow>
-                                <TableCell colSpan={2} style={{ textAlign: "center" }}>
-                                    <h3>등록된 정보가 존재하지 않습니다.</h3>
+                        {/* 조건 렌더링 */}
+                        {list.length === 0 ? 
+                            <>
+                                <TableRow>
+                                    <TableCell colSpan={2} style={{textAlign: "center"}}>등록된 정보가 없습니다.</TableCell>
+                                </TableRow>
+                            </>
+                        : list.map((item) => (
+                            <TableRow key={item.gb_idx}>
+                                <TableCell className="table-cell">{item.gb_name}</TableCell>
+                                <TableCell className="table-cell">
+                                    <Link href={`/guestBookDetails/${item.gb_idx}`}>{item.gb_subject}</Link>
                                 </TableCell>
                             </TableRow>
-                            : list.map((item) => (
-                                <TableRow key={item.gb_idx}>
-                                    <TableCell className="table-cell">{item.gb_name}</TableCell>
-                                    <TableCell className="table-cell">
-                                        <Link href={`/guestBookDetails/${item.gb_idx}`}>{item.gb_subject}</Link>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
+                        ))}
                     </TableBody>
                 </Table>
             </TableContainer>
